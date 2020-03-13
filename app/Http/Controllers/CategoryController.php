@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -14,17 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Category::latest()->get();
     }
 
     /**
@@ -35,7 +26,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Question::create($request->all());
+
+        $category = new Category;
+        $category->name  = $request->name;
+        $category->slug  = Str::slug($request->name);
+        $category->save();
+
+        return response('Created', 201);
     }
 
     /**
@@ -46,18 +44,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
+        return $category;
     }
 
     /**
@@ -69,7 +56,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        $category->update(
+            [
+                'name' => $request->name,
+                'slug' => Str::slug($request->name)
+            ]
+        );
+
+        return response('Updated', 202);
     }
 
     /**
@@ -80,6 +76,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response('Deleted', 201);
     }
 }

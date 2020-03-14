@@ -40,7 +40,7 @@ class ReplyController extends Controller
      */
     public function show(Question $question, Reply $reply)
     {
-        new ReplyResource($reply);
+        return new ReplyResource($reply);
     }
 
     /**

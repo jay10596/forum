@@ -12,7 +12,7 @@
                     <v-btn depressed small>Home</v-btn>
                 </router-link>
                 <router-link to="/category">
-                    <v-btn depressed small>Category</v-btn>
+                    <v-btn depressed small>Categories</v-btn>
                 </router-link>
                 <router-link to="/askquestion">
                     <v-btn depressed small>Ask Question</v-btn>

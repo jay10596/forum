@@ -1,21 +1,30 @@
 <template>
     <div>
-        <toolbar/>
-        
-        <app-footer/>
+        <Toolbar />
 
         <router-view/>
+
+        <br><br>
+        
+        <AppFooter />
     </div>
 </template>
 
 <script>
-    import Toolbar from'./Toolbar'
     import AppFooter from'./AppFooter'
     import Login from'./login/Login'
+    import Toolbar from'./Toolbar'
+
 
 
     export default {
-        components: {Toolbar, AppFooter, Login}
+        name: "Home",
+
+        components: {
+            Toolbar, 
+            AppFooter,
+            Login
+        }
     }
 </script>
 

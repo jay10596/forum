@@ -1,52 +1,51 @@
 <template>
     <div>
-        <v-form
-            ref="form"
-            v-model="valid"
-            lazy-validation
-        >
-            <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-            ></v-text-field>
+        <v-container>
+            <v-form @submit.prevent = "login">
+                <v-text-field
+                v-model="loginForm.email"
+                type="email"
+                label="E-mail"
+                required
+                ></v-text-field>
 
-            <v-select
-            v-model="password"
-            :items="items"
-            label="Password"
-            required
-            ></v-select>
+                <v-text-field
+                v-model="loginForm.password"
+                type="password"
+                label="Password"
+                required
+                ></v-text-field>
 
-            <v-checkbox
-            v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
-            label="Are you sure?"
-            required
-            ></v-checkbox>
-
-            <v-btn
-            :disabled="!valid"
-            color="success"
-            class="mr-4"
-            type="submit"
-            @click="validate"
-            >
-            Login
-            </v-btn>
-        </v-form>
+                <v-btn
+                color="success"
+                type="submit"
+                >
+                Login
+                </v-btn>
+            </v-form>
+        </v-container>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
+
+        name: "Login",
+
         data() {
             return {
-                form: {
+                loginForm: {
                     email: null,
                     password: null
                 }
+            }
+        },
+
+        methods: {
+            login() {
+                User.login(this.loginForm)
             }
         }
     }

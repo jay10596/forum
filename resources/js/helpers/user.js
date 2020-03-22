@@ -8,6 +8,12 @@ class User {
             .catch(error => console.log(error.response.data))
     }
 
+    signup(data) {
+        axios.post('/api/auth/signup', data)
+            .then(res => this.responseAfterLogin(res))
+            .catch(error => this.errors = error.response.data.errors)
+    }
+
     responseAfterLogin(res) {
         const token = res.data.access_token
         const username = res.data.user
@@ -16,6 +22,7 @@ class User {
         {
             console.log(token)
             Storage.store(token, username)
+            window.location = "/forum"
         }
     }
 
@@ -34,6 +41,7 @@ class User {
 
     logout(){
         Storage.clear()
+        window.location = "/forum"
     }
 
     name() {

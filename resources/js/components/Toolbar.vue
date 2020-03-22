@@ -8,17 +8,8 @@
             <v-toolbar-title>Forum SPA</v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
-                <router-link to="/home">
-                    <v-btn depressed small>Home</v-btn>
-                </router-link>
-                <router-link to="/category">
-                    <v-btn depressed small>Categories</v-btn>
-                </router-link>
-                <router-link to="/askquestion">
-                    <v-btn depressed small>Ask Question</v-btn>
-                </router-link>
-                <router-link to="/login">
-                    <v-btn depressed small>Login</v-btn>
+                <router-link v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
+                    <v-btn >{{item.title}}</v-btn>
                 </router-link>
             </div>
         </v-toolbar>
@@ -27,7 +18,25 @@
 
 <script>
     export default {
-        name: "Toolbar"
+        name: "Toolbar",
+
+        created() {
+            EventBus.$on('logout', () => {
+                User.logout()
+            })
+        },
+
+        data(){
+            return {
+                items: [
+                    {title: 'Forum', to: '/forum', show: true},
+                    {title: 'Ask Questionn', to: '/askquestion', show: User.loggedIn()},
+                    {title: 'Category', to: '/category', show: User.loggedIn()},
+                    {title: 'Login', to: '/login', show: !User.loggedIn()},
+                    {title: 'Logout', to: '/logout', show: User.loggedIn()},             
+                ]
+            }
+        }
     }
 </script>
 

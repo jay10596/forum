@@ -7,7 +7,10 @@ import Vuetify from 'vuetify';
 import router from './router/router.js';
 import User from './helpers/user.js';
 window.User = User
-console.log(User.id())
+
+console.log(User.loggedIn())
+
+window.EventBus = new Vue();
 
 Vue.use(Vuetify);
 

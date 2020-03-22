@@ -12,10 +12,7 @@
 
 <script>
     import AppFooter from'./AppFooter'
-    import Login from'./login/Login'
     import Toolbar from'./Toolbar'
-
-
 
     export default {
         name: "Home",
@@ -23,7 +20,6 @@
         components: {
             Toolbar, 
             AppFooter,
-            Login
         }
     }
 </script>

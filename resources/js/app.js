@@ -14,6 +14,11 @@ window.EventBus = new Vue();
 
 Vue.use(Vuetify);
 
+import VueSimplemde from 'vue-simplemde'
+import 'simplemde/dist/simplemde.min.css'
+
+Vue.component('vue-simplemde', VueSimplemde)
+
 Vue.component('Home', require('./components/Home.vue').default);
 
 const app = new Vue({

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Model\Question;
+use App\Model\Reply;
 
 
 class User extends Authenticatable implements JWTSubject

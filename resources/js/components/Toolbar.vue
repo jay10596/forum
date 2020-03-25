@@ -30,7 +30,7 @@
             return {
                 items: [
                     {title: 'Forum', to: '/forum', show: true},
-                    {title: 'Ask Questionn', to: '/askquestion', show: User.loggedIn()},
+                    {title: 'Ask Question', to: '/askquestion', show: User.loggedIn()},
                     {title: 'Category', to: '/category', show: User.loggedIn()},
                     {title: 'Login', to: '/login', show: !User.loggedIn()},
                     {title: 'Logout', to: '/logout', show: User.loggedIn()},             

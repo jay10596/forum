@@ -7,7 +7,7 @@ import Signup from'../components/login/Signup'
 import Forum from'../components/forum/Forum'
 import SingleQuestion from'../components/forum/SingleQuestion'
 import AskQuestion from'../components/forum/AskQuestion'
-
+import Category from'../components/category/Category'
 
 Vue.use(VueRouter)
 
@@ -17,7 +17,8 @@ const routes = [
     { path: '/signup', component: Signup },
     { path: '/forum', component: Forum, name:"Forum" },
     { path: '/questions/:slug', component: SingleQuestion, name:"SingleQuestion" },
-    { path: '/askquestion', component: AskQuestion }
+    { path: '/askquestion', component: AskQuestion },
+    { path: '/category', component: Category }
 ]
 
 const router = new VueRouter({

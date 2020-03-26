@@ -6,18 +6,24 @@
                         
                 </Questions>
             </v-flex>
-                Sidebar
+
+            <v-flex xs4>
+                <Sidebar>
+                        
+                </Sidebar>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
     import Questions from "./Questions"
+    import Sidebar from "./Sidebar"
 
     export default {
         name: "Forum",
 
-        components: {Questions},
+        components: {Questions, Sidebar},
 
         data() {
             return {

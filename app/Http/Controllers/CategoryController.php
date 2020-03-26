@@ -68,8 +68,6 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update($request->all());
-
         $category->update(
             [
                 'name' => $request->name,
@@ -77,7 +75,7 @@ class CategoryController extends Controller
             ]
         );
 
-        return response('Updated', 202);
+        return response(new CategoryResource($category), 202);
     }
 
     /**

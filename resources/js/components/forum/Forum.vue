@@ -2,7 +2,7 @@
     <v-container fluid grid-list-md>
         <v-layout row wrap>
             <v-flex xs8>
-                <Questions v-for="question in questions" :key="question.path" :question=question>
+                <Questions v-for="question in questions" :key="question.path" :question = question>
                         
                 </Questions>
             </v-flex>

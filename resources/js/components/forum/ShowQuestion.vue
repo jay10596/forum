@@ -1,14 +1,13 @@
 <template>
     <v-card
         class="mx-auto mb-5"
-        max-width="700"
         outlined
     >
         <v-list-item three-line>
             <v-list-item-content>
-                <v-list-item-title class="headline mb-1">{{question.title}}</v-list-item-title>
+                <v-card-title class="headline mb-1">{{question.title}}</v-card-title>
+                <v-card-subtitle>{{question.user}} : {{question.created_at}}</v-card-subtitle>
                 <v-card-text class=" mb-5 mt-4"  v-html="body"></v-card-text>
-                <v-list-item-subtitle>{{question.user}} : {{question.created_at}}</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
 
@@ -22,9 +21,8 @@
         </v-card-actions>
 
         <v-spacer></v-spacer>
-        <v-spacer></v-spacer>
-
-        <v-btn color="green" class="ml-5 mb-5">5 Replies</v-btn>
+        
+        <v-btn color="green" class="ml-5 mb-5" dark>{{question.replies_count}} Replies</v-btn>
     </v-card>
 </template>
 
@@ -32,6 +30,8 @@
     import md from 'marked'
 
     export default {
+        name: "ShowQuestion",
+
         props:['question'],
 
         data() {

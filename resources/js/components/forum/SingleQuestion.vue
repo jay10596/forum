@@ -3,20 +3,27 @@
         <div v-if="editing">
             <EditQuestion :question = question></EditQuestion>
         </div>
+
         <div v-else>
             <ShowQuestion :question = question v-if="question"></ShowQuestion>
         </div>
+
+        <CreateReply></CreateReply>
+
+        <Replies :question = question></Replies>
     </div>
 </template>
 
 <script>
     import ShowQuestion from "./ShowQuestion"
     import EditQuestion from "./EditQuestion"
+    import Replies from "../reply/Replies"
+    import CreateReply from "../reply/CreateReply"
 
     export default {
         name: "SingleQuestion",
 
-        components: {ShowQuestion, EditQuestion},
+        components: {ShowQuestion, EditQuestion, Replies, CreateReply},
 
         data(){
             return {
@@ -45,7 +52,6 @@
                 axios.get(`/api/questions/${this.$route.params.slug}`)
                     .then(res => this.question = res.data.data)
                     .catch(error => console.log(error.response.data))
-        
             }
         }
 

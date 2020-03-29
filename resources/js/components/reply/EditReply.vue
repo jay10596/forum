@@ -23,13 +23,13 @@
         props: ['reply'],
 
         methods: {
-            cancelEdit() {
-                EventBus.$emit('cancelEditing')
+            cancelEdit(reply) {
+                EventBus.$emit('cancelEditing', reply)
             },
 
             saveEdit() {
                 axios.put(`/api/questions/${this.$route.params.slug}/replies/${this.reply.id}`, {body: this.reply.body})
-                    .then(res => this.cancelEdit())
+                    .then(res => this.cancelEdit(this.reply.body))
             }
         }
 

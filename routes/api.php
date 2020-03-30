@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +28,9 @@ Route::apiResource('/questions/{question}/replies', 'ReplyController');
 
 Route::post('/{reply}/like', 'LikeController@likeIt');
 Route::delete('/{reply}/like', 'LikeController@unlikeIt');
+
+Route::post('/notifications', 'NotificationController@index');
+Route::post('/markasread', 'NotificationController@markAsRead');
 
 Route::group([
 

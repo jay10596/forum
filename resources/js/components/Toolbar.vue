@@ -12,7 +12,7 @@
             
             <div>
                 <router-link v-for="item in items" :key="item.title" :to="item.to">
-                    <v-btn  v-if="item.show">{{item.title}}</v-btn>
+                    &ensp; <v-btn  v-if="item.show">{{item.title}}</v-btn> 
                 </router-link>
             </div>
         </v-toolbar>
@@ -50,5 +50,5 @@
 </script>
 
 <style>
-
+    a {  text-decoration: none;}
 </style>

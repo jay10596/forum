@@ -7,7 +7,7 @@ use App\Model\Question;
 use Illuminate\Http\Request;
 use App\Http\Resources\ReplyResource;
 use App\Notifications\NewReplyNotification;
-
+use App\Events\DeleteReplyEvent;
 
 
 class ReplyController extends Controller
@@ -51,6 +51,7 @@ class ReplyController extends Controller
         $reply->save();
 
         $user = $question->user;
+        
         if($reply->user_id != $question->user_id) {
             $user->notify(new NewReplyNotification($reply));
         }
@@ -91,6 +92,9 @@ class ReplyController extends Controller
     public function destroy(Question $question,Reply $reply)
     {
         $reply->delete();
+
+        broadcast(new DeleteReplyEvent($reply->id))->toOthers();
+
         return response('Deleted', 201);
     }
 }

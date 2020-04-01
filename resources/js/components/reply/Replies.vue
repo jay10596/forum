@@ -32,9 +32,23 @@
                             this.question.replies.splice(index,1)
                         })
                 })
+
+                Echo.private('App.User.' + User.id())
+				    .notification((notification) => {
+                        this.question.replies.unshift(notification.reply)
+                        //console.log(notification.type)
+                    });
+                    
+                Echo.channel('deleteReplyChannel')
+                    .listen('DeleteReplyEvent', (e) => {
+                        for(let index = 0; index< this.question.replies.length; index++) {
+                            if(this.question.replies[index].id == e.id) {
+                                this.question.replies.splice(index, 1)
+                            }
+                        }
+                    })
             }
         }
-        
     }
 </script>
 

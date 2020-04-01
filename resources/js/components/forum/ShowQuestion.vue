@@ -22,7 +22,7 @@
 
         <v-spacer></v-spacer>
         
-        <v-btn color="green" class="ml-5 mb-5" dark>{{question.replies_count}} Replies</v-btn>
+        <v-btn color="green" class="ml-5 mb-5" dark>{{replyCount}} Replies</v-btn>
     </v-card>
 </template>
 
@@ -36,7 +36,8 @@
 
         data() {
             return {
-                own : User.own(this.question.id)
+                own : User.own(this.question.id),
+                replyCount: this.question.replies_count
             }
         },
 
@@ -44,6 +45,26 @@
             body() {
                 return md.parse(this.question.body)
             }
+        },
+
+        created() {
+            EventBus.$on('creatingReply', () => {
+                this.replyCount++
+            })
+
+            Echo.private('App.User.' + User.id())
+                .notification((notification) => {
+                    this.replyCount++
+                });
+            
+            EventBus.$on('deletingReply', () => {
+                this.replyCount--
+            })
+
+            Echo.channel('deleteReplyChannel')
+                .listen('DeleteReplyEvent', (e) => {
+                    this.replyCount--
+                })
         },
 
         methods: {

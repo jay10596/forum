@@ -5,8 +5,12 @@ window.Vue = require('vue');
 import Vue from 'vue'
 import Vuetify from 'vuetify';
 import router from './router/router.js';
+
 import User from './helpers/user.js';
 window.User = User
+
+import Exception from './helpers/exception.js';
+window.Exception = Exception
 
 console.log(User.loggedIn())
 

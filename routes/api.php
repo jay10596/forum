@@ -30,7 +30,7 @@ Route::post('/{reply}/like', 'LikeController@likeIt');
 Route::delete('/{reply}/like', 'LikeController@unlikeIt');
 
 Route::post('/notifications', 'NotificationController@index');
-Route::post('/markasread', 'NotificationController@markAsRead');
+Route::post('/markasread', 'NotificationController@markasread');
 
 Route::group([
 

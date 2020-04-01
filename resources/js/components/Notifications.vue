@@ -52,6 +52,13 @@
             if(User.loggedIn()) {
                 this.getNotifications()
             }
+
+            Echo.private('App.User.' + User.id())
+                .notification((notification) => {
+                    this.unread.unshift(notification)
+                    this.unreadCount ++
+                    //console.log(notification.type)
+                });
         },
 
         methods: {
@@ -62,6 +69,7 @@
                         this.unread = res.data.unread
                         this.unreadCount = res.data.unread.length
                     })
+                    .catch(error => Exception.handle(error))
             },
 
             markRead(notification) {

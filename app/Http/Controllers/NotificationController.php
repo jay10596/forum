@@ -7,6 +7,16 @@ use App\Http\Resources\NotificationResource;
 
 class NotificationController extends Controller
 {
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+		$this->middleware('JWT');
+    }
+    
     public function index()
     {
         return [
@@ -15,7 +25,7 @@ class NotificationController extends Controller
         ];
     }
 
-    public function markAsRead(Request $request)
+    public function markasread(Request $request)
     {
         auth()->user()->notifications->where('id', $request->id)->markAsRead();
     }

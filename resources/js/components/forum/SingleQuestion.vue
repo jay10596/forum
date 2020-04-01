@@ -8,8 +8,12 @@
             <ShowQuestion :question = question v-if="question"></ShowQuestion>
         </div>
 
-        <CreateReply></CreateReply>
+        <CreateReply v-if="loggedIn"></CreateReply>
 
+        <router-link v-else to="/login" >
+            <v-btn class="ml-5" color="green" dark>Login to reply</v-btn> 
+        </router-link>
+        
         <Replies :question = question></Replies>
     </div>
 </template>
@@ -29,6 +33,12 @@
             return {
                 question: null,
                 editing: false
+            }
+        },
+
+        computed: {
+            loggedIn() {
+                return User.loggedIn()
             }
         },
 

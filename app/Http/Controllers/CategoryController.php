@@ -6,6 +6,7 @@ use App\Model\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Resources\CategoryResource;
+use App\Http\Requests\CategoryRequest;
 
 
 class CategoryController extends Controller
@@ -36,7 +37,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         //Question::create($request->all());
 
@@ -45,7 +46,7 @@ class CategoryController extends Controller
         $category->slug  = Str::slug($request->name);
         $category->save();
 
-        return response('Created', 201);
+        return response(['category' => new CategoryResource($category)], 201);
     }
 
     /**

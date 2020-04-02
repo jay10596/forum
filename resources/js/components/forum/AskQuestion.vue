@@ -19,11 +19,10 @@
 
             <vue-simplemde v-model="questionForm.body" ref="markdownEditor" />
 
-            <br><br><br>
-
             <v-btn
                 color="success"
                 type="submit"
+                :disabled="disableButton"
                 >
                 Create
             </v-btn>
@@ -44,6 +43,12 @@
                 },
                 categories: {},
                 errors: {}
+            }
+        },
+
+        computed: {
+            disableButton() {
+                return !(this.questionForm.title && this.questionForm.body && this.questionForm.category_id)
             }
         },
 

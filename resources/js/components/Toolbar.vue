@@ -1,11 +1,15 @@
 <template>
     <v-card
         flat
-        height="100px"
         tile
     >
-        <v-toolbar>
-            <v-toolbar-title>Forum SPA</v-toolbar-title>
+        <v-toolbar color="indigo darken-1" dark>
+            <v-toolbar-title>
+                <router-link to="/" class="white--text">
+                    ForumSPA
+                </router-link>
+            </v-toolbar-title>
+
             <v-spacer></v-spacer>
 
             <Notifications v-if="loggedIn"></Notifications>

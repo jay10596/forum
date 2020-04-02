@@ -1,5 +1,8 @@
 <template>
     <v-container>
+        <v-alert type="error" v-if="errors">
+            {{errors.name[0]}}
+        </v-alert>
         <v-form @submit.prevent = "submitCategory">
             <v-text-field
             v-model="categoryForm.name"
@@ -11,6 +14,8 @@
             <v-btn color="pink" type="submit" v-if="hasSlug">Update</v-btn>
             <v-btn color="success" type="submit" v-else>Create</v-btn>
         </v-form>
+
+        <br><br>
 
         <v-card>
             <v-toolbar color="green" dark>
@@ -53,7 +58,7 @@
                     name: null,
                 },
                 categories: {},
-                errors: {},
+                errors: null,
                 hasSlug: null
             }
         },
@@ -72,10 +77,10 @@
             createCategory() {
                 axios.post('/api/categories', this.categoryForm)
                     .then(res => {
-                        this.categories.unshift(res.data)
+                        this.categories.unshift(res.data.category)
                         this.categoryForm.name = null
                     })
-                    .catch(error => this.errors = error.response.data.error)
+                    .catch(error => this.errors = error.response.data.errors)
             },
 
             updateCategory() {
@@ -83,6 +88,7 @@
                     .then(res => {
                         this.categories.unshift(res.data)
                         this.categoryForm.name = null
+                        this.hasSlug = null
                     })
                     .catch(error => this.errors = error.response.data.error)
             },

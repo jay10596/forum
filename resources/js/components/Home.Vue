@@ -1,11 +1,11 @@
 <template>
     <div>
         <Toolbar/>
-
+        
         <router-view/>
 
-        <br><br>
-        
+        <br><br><br>
+
         <AppFooter/>
     </div>
 </template>

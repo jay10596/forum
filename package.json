@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@mdi/js": "^5.0.45",
+        "howler": "^2.1.3",
         "laravel-echo": "^1.6.1",
         "material-design-icons-iconfont": "^5.0.1",
         "mdbvue": "^6.5.0",

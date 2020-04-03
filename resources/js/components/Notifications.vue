@@ -30,6 +30,8 @@
 
 <script>
     import axios from 'axios';
+    require('howler');
+
 
     export default {
         name: "Notifications",
@@ -38,7 +40,8 @@
             return {
                 read: {},
                 unread: {},
-                unreadCount: 0
+                unreadCount: 0,
+                sound: "http://soundbible.com/mp3/railroad_crossing_bell-Brylon_Terry-1551570865.mp3"
             }
         },
 
@@ -55,6 +58,7 @@
 
             Echo.private('App.User.' + User.id())
                 .notification((notification) => {
+                    this.playSound()
                     this.unread.unshift(notification)
                     this.unreadCount ++
                     //console.log(notification.type)
@@ -79,7 +83,12 @@
                         this.read.push(notification)
                         this.unreadCount --
                     })
-            }
+            },
+
+            playSound() {
+                let alert = new Audio(this.sound)
+                alert.play()
+            },
         }
     }
 </script>
